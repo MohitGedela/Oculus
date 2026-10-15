@@ -3,7 +3,7 @@
 
 **AI-Assisted Diabetic Retinopathy Screening Through Computer Vision**
 
-RetinaSense is a machine learning research project exploring how computer vision can help identify retinal images that may show signs of diabetic retinopathy (DR). Our goal is to investigate an accessible first-pass screening pipeline that flags potentially referable cases for further professional evaluation.
+RetinaSense is a machine learning research project exploring how computer vision can help identify retinal images that may show signs of diabetic retinopathy (DR), one of the leading cause for blindness. Our goal is to investigate an accessible first-pass screening pipeline that flags potentially referable cases for further professional evaluation.
 
 > **Our goal:** Make preliminary retinal screening more accessible while keeping clinical decisions in the hands of qualified healthcare professionals.
 
