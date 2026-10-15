@@ -111,7 +111,7 @@ Dataset roles are preliminary and will be finalized after inspecting the availab
 
 ## ⚙️ Technical Approach
 
-### Image preprocessing
+### Image Preprocessing
 
 We will investigate a consistent preprocessing strategy for retinal fundus images.
 
