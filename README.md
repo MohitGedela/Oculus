@@ -155,31 +155,6 @@ Initial model candidates:
 
 We will establish a reproducible baseline before exploring more complex architectures.
 
-## 🛠️ Current Work
-
-Our initial focus is on understanding the datasets and defining the preprocessing and quality-assessment stages before model training begins.
-
-| Workstream | Tasks | Owner(s) | Status |
-|---|---|---|---|
-| Image preprocessing | Research image resizing, cropping, normalization, and consistency across datasets. | Mohit, Nithya | In progress |
-| Image quality assessment | Research quality indicators and criteria for accepting, rejecting, or flagging images. | Manasvi | In progress |
-| Dataset inspection | Examine label distributions, class imbalance, and dataset characteristics. | Kabir, Lohit | In progress |
-| Dataset discovery | Identify and assess additional publicly available retinal image datasets. | Kabir, Lohit | In progress |
-| Repository setup | Configure GitHub issues, project board, and contribution workflow. | Mohit | In progress |
-| Pipeline tooling | Investigate tools and libraries for data loading, preprocessing, quality checks, and experiment tracking. | Nithya | In progress |
-
-*Statuses should be updated as work progresses.*
-
-## 👥 Team
-
-| Team member | Initial focus |
-|---|---|
-| Manasvi | Image quality assessment research |
-| Mohit | Image preprocessing research and repository setup |
-| Nithya | Image preprocessing research and pipeline tooling |
-| Kabir | Dataset inspection and dataset discovery |
-| Lohit | Dataset inspection and dataset discovery |
-
 ## 📊 Evaluation Strategy
 
 We will evaluate model performance using metrics appropriate for an imbalanced screening task.
