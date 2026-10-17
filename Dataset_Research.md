@@ -15,6 +15,7 @@ Original sources:
 1. EyePACS (Kaggle Diabetic Retinopathy Detection): https://www.kaggle.com/competitions/diabetic-retinopathy-detection
 2. APTOS 2019 Blindness Detection: https://www.kaggle.com/competitions/aptos2019-blindness-detection
 3. APTOS Gaussian Filtered (derived from APTOS 2019, cite the original too): https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered
+3. APTOS Gaussian Filtered (derived from APTOS 2019): https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered
 4. Messidor: https://www.adcis.net/en/third-party/messidor/
    - Required acknowledgement: "Kindly provided by the Messidor program partners."
    - Citation: Decencière, E., et al. (2014). Feedback on a publicly distributed database: the Messidor database. Image Analysis & Stereology, 33(3), 231-234. https://doi.org/10.5566/ias.1155
