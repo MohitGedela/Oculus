@@ -14,6 +14,7 @@ About Dataset:
 Original sources:
 1. EyePACS (Kaggle Diabetic Retinopathy Detection): https://www.kaggle.com/competitions/diabetic-retinopathy-detection
 2. APTOS 2019 Blindness Detection: https://www.kaggle.com/competitions/aptos2019-blindness-detection
+3. APTOS Gaussian Filtered (derived from APTOS 2019, cite the original too): https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered
 3. APTOS Gaussian Filtered (derived from APTOS 2019): https://www.kaggle.com/datasets/sovitrath/diabetic-retinopathy-224x224-gaussian-filtered
 4. Messidor: https://www.adcis.net/en/third-party/messidor/
    - Required acknowledgement: "Kindly provided by the Messidor program partners."
