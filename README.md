@@ -1,9 +1,9 @@
 
-# RetinaSense🔬
+# Oculus🔬
 
 **AI-Assisted Diabetic Retinopathy Screening Through Computer Vision**
 
-RetinaSense is a machine learning research project exploring how computer vision can help identify retinal images that may show signs of diabetic retinopathy (DR), one of the leading cause for blindness. Our goal is to investigate an accessible first-pass screening pipeline that flags potentially referable cases for further professional evaluation.
+Oculus is a machine learning research project exploring how computer vision can help identify retinal images that may show signs of diabetic retinopathy (DR), one of the leading cause for blindness. Our goal is to investigate an accessible first-pass screening pipeline that flags potentially referable cases for further professional evaluation.
 
 > **Our goal:** Make preliminary retinal screening more accessible while keeping clinical decisions in the hands of qualified healthcare professionals.
 
@@ -32,9 +32,9 @@ Diabetic retinopathy is a complication of diabetes that damages the blood vessel
 
 However, access to screening remains uneven, particularly in rural and underserved communities where specialist appointments, transportation, and distance can create barriers.
 
-RetinaSense explores whether machine learning can help make the initial screening process more accessible by analyzing retinal fundus photographs and flagging images that may require further review.
+Oculus explores whether machine learning can help make the initial screening process more accessible by analyzing retinal fundus photographs and flagging images that may require further review.
 
-### Why RetinaSense?
+### Why Oculus?
 
 - **Accessibility:** Explore screening workflows for settings with limited access to specialists.
 - **Early identification:** Flag images that may show signs of referable diabetic retinopathy.
@@ -188,7 +188,7 @@ We will also investigate:
 
 ## ⚕️ Medical Disclaimer
 
-RetinaSense is a research prototype, not a medical diagnostic tool. It is not intended to replace professional screening, clinical judgment, or evaluation by a qualified healthcare professional. Model predictions must not be used as a substitute for medical advice.
+Oculus is a research prototype, not a medical diagnostic tool. It is not intended to replace professional screening, clinical judgment, or evaluation by a qualified healthcare professional. Model predictions must not be used as a substitute for medical advice.
 
 ## 📚 References
 
@@ -201,4 +201,4 @@ RetinaSense is a research prototype, not a medical diagnostic tool. It is not in
 
 ---
 
-*RetinaSense | Computer Vision Research Project*
+*Oculus | Computer Vision Research Project*
