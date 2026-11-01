@@ -1,5 +1,5 @@
 
-# Oculus🔬
+# Oculus 🩺
 
 **AI-Assisted Diabetic Retinopathy Screening Through Computer Vision**
 
