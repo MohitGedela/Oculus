@@ -115,6 +115,19 @@ Balanced dataset, plain BCE, test set, threshold set for 90% validation sensitiv
 
 On normalized images, ResNet-18 beats the baseline CNN (test AUROC 0.833 vs 0.809) and reaches its best validation AUROC at epoch 4, but it overfits quickly after that. Sensitivity lands slightly below 0.90 on test because the threshold is fixed on validation and does not transfer perfectly.
 
+## 🧱 Repository Layout
+
+| Path | Contents |
+|---|---|
+| `notebooks/` | Data collection and baseline training notebooks. |
+| `transfer-learning/resnet50/` | ResNet-50 notebooks. |
+| `transfer-learning/restnet18/` | ResNet-18 notebooks. |
+| `transfer-learning/retfound/` | RETFound notebooks. |
+| `model.py` | The baseline CNN. |
+| `src/quality_check.py` | Image quality check. |
+| `tests/` | Tests for the quality check. |
+| `DATASET.md`, `Dataset_Research.md`, `Preprocessing.md`, `Tools_and_Technologies.md` | Project documentation. |
+
 ## 🗺️ Roadmap
 
 - [ ] **Phase 1:** Inspect datasets and finalize initial dataset roles.
