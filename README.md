@@ -3,9 +3,11 @@
 
 **AI-Assisted Diabetic Retinopathy Screening Through Computer Vision**
 
-Oculus is a machine learning research project exploring how computer vision can help identify retinal images that may show signs of diabetic retinopathy (DR), one of the leading cause for blindness. Our goal is to investigate an accessible first-pass screening pipeline that flags potentially referable cases for further professional evaluation.
+Oculus (project name RetinaSense) is a machine learning research project that screens retinal fundus photos for referable diabetic retinopathy (DR). A photo goes through a quality check, preprocessing, and a classifier that answers one binary question: does this eye show referable DR? Flagged images go to an ophthalmologist. The model never diagnoses. It helps prioritize who gets seen.
 
 > **Our goal:** Make preliminary retinal screening more accessible while keeping clinical decisions in the hands of qualified healthcare professionals.
+
+Built by a team of five in the RBC Borealis "Let's SOLVE It" program, Fall 2026.
 
 ---
 
@@ -13,13 +15,12 @@ Oculus is a machine learning research project exploring how computer vision can 
 
 - [About the Project](#-about-the-project)
 - [Problem Statement](#-problem-statement)
-- [Our Approach](#-our-approach)
-- [ML Pipeline](#-ml-pipeline)
-- [Datasets](#-datasets)
-- [Technical Approach](#-technical-approach)
-- [Current Work](#-current-work)
+- [Data](#-data)
+- [Evaluation Protocol](#-evaluation-protocol)
+- [Experiments](#-experiments)
+- [Results So Far](#-results-so-far)
+- [Repository Layout](#-repository-layout)
 - [Team](#-team)
-- [Evaluation Strategy](#-evaluation-strategy)
 - [Roadmap](#-roadmap)
 - [Medical Disclaimer](#-medical-disclaimer)
 - [References](#-references)
@@ -28,22 +29,13 @@ Oculus is a machine learning research project exploring how computer vision can 
 
 ## 🧠 About the Project
 
-Diabetic retinopathy is a complication of diabetes that damages the blood vessels in the retina. It can progress without noticeable symptoms, making regular screening important for detecting potential problems early.
+Diabetic retinopathy damages the blood vessels in the retina and can progress without symptoms, so regular screening matters. Access to specialists is uneven, particularly in rural and underserved communities. Oculus explores whether a model can do a first pass over retinal photos and flag the ones that need a specialist.
 
-However, access to screening remains uneven, particularly in rural and underserved communities where specialist appointments, transportation, and distance can create barriers.
-
-Oculus explores whether machine learning can help make the initial screening process more accessible by analyzing retinal fundus photographs and flagging images that may require further review.
-
-### Why Oculus?
-
-- **Accessibility:** Explore screening workflows for settings with limited access to specialists.
-- **Early identification:** Flag images that may show signs of referable diabetic retinopathy.
-- **Reliability:** Investigate image quality, class imbalance, and model generalization.
-- **Responsible AI:** Prioritize sensitivity and professional review over unsupported diagnostic claims.
+**Why sensitivity matters most.** A false negative is a missed case, which is the dangerous error. A false positive is an unnecessary referral. For that reason the decision threshold is chosen on validation data to reach 90% sensitivity, and we report specificity at that point.
 
 ## 🎯 Problem Statement
 
-How can we develop and evaluate a computer vision pipeline that identifies retinal fundus images potentially showing referable diabetic retinopathy, while accounting for image quality, class imbalance, false negatives, and generalization across datasets?
+How can we develop and evaluate a computer vision pipeline that flags retinal fundus images showing referable diabetic retinopathy, while accounting for image quality, class imbalance, false negatives, and generalization across data sources?
 
 ## 💡 Our Approach
 
