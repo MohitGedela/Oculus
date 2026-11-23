@@ -128,6 +128,16 @@ On normalized images, ResNet-18 beats the baseline CNN (test AUROC 0.833 vs 0.80
 | `tests/` | Tests for the quality check. |
 | `DATASET.md`, `Dataset_Research.md`, `Preprocessing.md`, `Tools_and_Technologies.md` | Project documentation. |
 
+## 👥 Team
+
+| Person | Baseline CNN loss | Transfer-learning slot |
+|---|---|---|
+| Manasvi | Plain BCE (control), shared evaluation | ResNet-50, both preprocessings |
+| Nithya | Weighted BCE | ResNet-18 with Ben Graham |
+| Kabir | Focal loss | RETFound, both preprocessings |
+| Lohit | AUC loss | None listed |
+| Mohit | Label smoothing | ResNet-18 without Ben Graham |
+
 ## 🗺️ Roadmap
 
 - [ ] **Phase 1:** Inspect datasets and finalize initial dataset roles.
