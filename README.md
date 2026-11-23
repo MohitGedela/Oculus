@@ -140,13 +140,17 @@ On normalized images, ResNet-18 beats the baseline CNN (test AUROC 0.833 vs 0.80
 
 ## 🗺️ Roadmap
 
-- [ ] **Phase 1:** Inspect datasets and finalize initial dataset roles.
-- [ ] **Phase 2:** Define image quality criteria and preprocessing decisions.
-- [ ] **Phase 3:** Finalize label mapping and leakage-resistant data splits.
-- [ ] **Phase 4:** Train and evaluate a baseline CNN.
-- [ ] **Phase 5:** Compare against a transfer-learning model.
-- [ ] **Phase 6:** Analyze errors, thresholds, and generalization.
-- [ ] **Phase 7:** Document findings, limitations, and future work.
+- [x] Collect and inspect the datasets.
+- [x] Preprocess the images (normalized and Ben Graham variants).
+- [x] Build balanced and imbalanced splits with no patient overlap.
+- [x] Train the baseline CNN with each loss function on the balanced data.
+- [x] Fine-tune ResNet-18 on normalized images.
+- [ ] Fill in the remaining transfer-learning rows (ResNet-18 and ResNet-50 with Ben Graham, ResNet-50 normalized, RETFound).
+- [ ] Choose the second loss function after asking the mentors.
+- [ ] Rerun imbalanced experiments with 60/40 batch balancing.
+- [ ] Sanity checks: overfit a few images, shuffled-label control, majority-class dummy, and a green-channel logistic regression benchmark.
+- [ ] Analyze balanced vs imbalanced, and the effect of Ben Graham preprocessing.
+- [ ] Document findings, limitations, and future work.
 
 ## ⚕️ Medical Disclaimer
 
@@ -154,12 +158,10 @@ Oculus is a research prototype, not a medical diagnostic tool. It is not intende
 
 ## 📚 References
 
-1. Roychowdhury, S. et al. (2014). *Iterative Vessel Segmentation of Fundus Images*. [Search publication](https://scholar.google.com/scholar?q=Roychowdhury+2014+diabetic+retinopathy+fundus+images)
-2. Gulshan, V. et al. (2016). *Development and Validation of a Deep Learning Algorithm for Detection of Diabetic Retinopathy in Retinal Fundus Photographs*. [JAMA](https://doi.org/10.1001/jama.2016.17216)
-3. APTOS 2019 Blindness Detection. [Kaggle dataset](https://www.kaggle.com/competitions/aptos2019-blindness-detection)
-4. EyePACS. [Official website](https://www.eyepacs.org/)
-5. MESSIDOR. [Official project website](https://www.adcis.net/en/third-party/messidor/)
-6. OLIVES. [Project and dataset information](https://github.com/olivesgatech/OLIVES-Dataset)
+1. Gulshan, V. et al. (2016). *Development and Validation of a Deep Learning Algorithm for Detection of Diabetic Retinopathy in Retinal Fundus Photographs*. [JAMA](https://doi.org/10.1001/jama.2016.17216)
+2. APTOS 2019 Blindness Detection. [Kaggle dataset](https://www.kaggle.com/competitions/aptos2019-blindness-detection)
+3. EyePACS. [Official website](https://www.eyepacs.org/)
+4. Zhou, Y. et al. (2023). *A foundation model for generalizable disease detection from retinal images* (RETFound). [Nature](https://doi.org/10.1038/s41586-023-06555-x)
 
 ---
 
