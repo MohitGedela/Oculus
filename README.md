@@ -79,6 +79,25 @@ Every run follows the same rules so results can be compared.
 7. **Graphs:** training curves, validation and test ROC, precision-recall, confusion matrix, performance by source and grade, confidence intervals, and a false-negative gallery.
 8. **Settings:** images resized to a fixed size and normalized with ImageNet mean and std, no augmentation by default, seed 42.
 
+## 🔬 Experiments
+
+All code runs in Kaggle notebooks on a T4 GPU.
+
+### Baseline CNN, one loss function per team member
+
+A small CNN trained from scratch: four blocks of Conv 3x3, BatchNorm, ReLU, MaxPool (32, 64, 128, 256 channels), global average pooling, dropout 0.3 and a linear layer that outputs one logit. Adam, learning rate 1e-3, weight decay 1e-4, batch size 32.
+
+Loss variants: plain BCE (control), weighted BCE, focal loss (gamma 2), label smoothing (targets 0.05 and 0.95), and AUC loss.
+
+### Transfer learning
+
+The team agreed on plain BCE for the transfer-learning experiments and three pretrained models, each tried on both preprocessing variants: ResNet-18, ResNet-50 and RETFound (a retinal foundation model).
+
+Fine-tuning recipe, copied from the RETFound recipe so the models are comparable:
+- **Epoch 1:** only the new output layer trains. Everything else is frozen.
+- **Epoch 2 onward:** all layers train, with layer-wise learning rates. The top group uses 6e-4 and each group closer to the input uses 0.65 times the rate of the one above it. For ResNet-18 the six groups are `conv1 + bn1`, `layer1`, `layer2`, `layer3`, `layer4` and `fc`.
+- AdamW with weight decay 0.05, cosine schedule, no augmentation, batch size 32, early stopping on validation AUROC with patience 5 and a 30 epoch cap.
+
 ## 🗺️ Roadmap
 
 - [ ] **Phase 1:** Inspect datasets and finalize initial dataset roles.
