@@ -37,69 +37,34 @@ Diabetic retinopathy damages the blood vessels in the retina and can progress wi
 
 How can we develop and evaluate a computer vision pipeline that flags retinal fundus images showing referable diabetic retinopathy, while accounting for image quality, class imbalance, false negatives, and generalization across data sources?
 
-## 💡 Our Approach
+## 🗂️ Data
 
-We plan to investigate a binary classification task:
+All images come from **APTOS 2019** and **EyePACS**. They were preprocessed by one shared notebook: crop the black border, pad to square, resize to 512x512, save as JPEG (quality 95). Two variants exist:
 
-- **Referable DR:** Images meeting the selected reference-label definition for referable diabetic retinopathy.
-- **Non-referable DR:** Images below that reference-label threshold.
-
-The precise mapping from original severity grades to these categories will be documented before training.
-
-Our initial experiments will compare a baseline convolutional neural network (CNN) against a transfer-learning model such as ResNet.
-
-Rather than treating every prediction as definitive, the pipeline will investigate how uncertain predictions and unsuitable images can be flagged for additional review.
-
-## 🔬 ML Pipeline
-
-```mermaid
-flowchart TD
-    A[Public Retinal Image Datasets] --> B[Dataset Inspection]
-    B --> C[Image Quality Assessment]
-    C -->|Suitable| D[Preprocessing]
-    C -->|Unsuitable or Uncertain| E[Flag for Review]
-    D --> F[Label Mapping and Data Splitting]
-    F --> G[Model Training]
-    G --> H[Model Evaluation]
-    H --> I[Threshold and Error Analysis]
-    I --> J[Screening Support Output]
-```
-
-### Pipeline stages
-
-| Stage | Purpose |
-|---|---|
-| Dataset inspection | Understand labels, class distributions, metadata, and dataset limitations. |
-| Image quality assessment | Identify images that may be unsuitable for reliable model input. |
-| Preprocessing | Standardize image dimensions and pixel representation while preserving relevant retinal features. |
-| Label preparation | Map original severity grades to the selected binary classification task. |
-| Model training | Train a baseline CNN and evaluate a transfer-learning approach. |
-| Evaluation | Measure performance, inspect false negatives, and assess generalization. |
-| Screening support | Explore flagging potentially referable or uncertain cases for professional review. |
-
-## 🗂️ Datasets
-
-We are investigating publicly available datasets for model development and evaluation.
-
-| Dataset | Intended use | Initial considerations |
+| Variant | Folder | Description |
 |---|---|---|
-| APTOS 2019 | Primary development and benchmarking | Five severity grades; inspect class distribution and image quality. |
-| EyePACS | Additional training or external evaluation | Check label compatibility, dataset size, and potential overlap with other datasets. |
-| MESSIDOR | External evaluation candidate | Verify grading conventions and compatibility with the selected referable DR definition. |
-| OLIVES | Exploratory generalization analysis | Investigate available labels, imaging modalities, and suitability for the task. |
+| Normalized | `processed` | Cropped, padded, resized. |
+| Ben Graham | `processed_bg` | The same, plus Ben Graham lighting correction (4 x image minus 4 x Gaussian blur plus 128, with the bright edge ring removed). |
 
-Dataset roles are preliminary and will be finalized after inspecting the available images, labels, and licensing conditions.
+A `manifest_v2.csv` lists every image with its source, patient `group_id`, severity `grade`, binary `label`, and split. Both eyes of a patient stay in the same split, and no `group_id` appears in two splits.
 
-### Dataset inspection checklist
+### Balanced dataset (used for the transfer-learning runs)
 
-- [ ] Confirm dataset access, licensing, and permitted use.
-- [ ] Count images and labels in each dataset.
-- [ ] Inspect the distribution of original severity grades.
-- [ ] Check for missing, inconsistent, or ambiguous labels.
-- [ ] Inspect image dimensions, color channels, and file formats.
-- [ ] Investigate duplicate images and potential patient overlap.
-- [ ] Define a consistent referable DR label mapping.
-- [ ] Determine appropriate training, validation, and test splits.
+Train was balanced by removing healthy images. Val and test keep the natural class mix on purpose.
+
+| Split | Images | Healthy | Referable | % referable |
+|---|---|---|---|---|
+| Train | 30,287 | 15,126 | 15,161 | 50.1 |
+| Val | 6,483 | 4,892 | 1,591 | 24.5 |
+| Test | 6,491 | 4,907 | 1,584 | 24.4 |
+
+### Imbalanced dataset
+
+The original distribution, kept for the class-imbalance experiments. Train has 62,195 images (24.4% referable), val 13,326, test 13,318. Its val and test sets are about twice the size of the balanced ones, so comparing across the two datasets changes more than one thing at once.
+
+### Label definition
+
+`label` is 0 or 1, but it does not simply mean grade 2 to 4. The balanced test set's 1,584 referable images include 348 grade 1 images. We still need to confirm how `label` was derived, and we report sensitivity by `grade` to make this visible.
 
 ## ⚙️ Technical Approach
 
