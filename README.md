@@ -66,72 +66,18 @@ The original distribution, kept for the class-imbalance experiments. Train has 6
 
 `label` is 0 or 1, but it does not simply mean grade 2 to 4. The balanced test set's 1,584 referable images include 348 grade 1 images. We still need to confirm how `label` was derived, and we report sensitivity by `grade` to make this visible.
 
-## ⚙️ Technical Approach
+## 📊 Evaluation Protocol
 
-### Image Preprocessing
+Every run follows the same rules so results can be compared.
 
-We will investigate a consistent preprocessing strategy for retinal fundus images.
-
-Areas to explore:
-- Standardizing image dimensions and color representation.
-- Comparing resizing, cropping, and retinal-region extraction.
-- Preserving retinal structures and lesions that may be relevant to classification.
-- Normalizing pixel values consistently.
-- Applying augmentation only to training data when appropriate.
-
-### Image quality assessment
-
-We will investigate how to identify images that may not be suitable for reliable classification.
-
-Areas to explore:
-- Illumination and exposure.
-- Blur and focus.
-- Occlusion and visible retinal area.
-- Image resolution and artifacts.
-- Criteria for flagging uncertain or unsuitable images.
-
-Quality thresholds will be selected and validated rather than assumed in advance.
-
-### Class imbalance
-
-We will inspect the original severity-grade distribution and the final binary-label distribution.
-
-Potential approaches include:
-- Class-weighted loss functions.
-- Training-only oversampling.
-- Carefully selected data augmentation.
-- Threshold adjustment using validation data.
-
-We will compare these approaches based on their effect on sensitivity, precision, and overall model performance.
-
-### Model development
-
-Initial model candidates:
-1. Baseline CNN.
-2. Transfer-learning model such as ResNet.
-
-We will establish a reproducible baseline before exploring more complex architectures.
-
-## 📊 Evaluation Strategy
-
-We will evaluate model performance using metrics appropriate for an imbalanced screening task.
-
-| Metric | Why it matters |
-|---|---|
-| Sensitivity (Recall) | Measures how many referable cases are correctly flagged. |
-| Specificity | Measures how many non-referable cases are correctly identified. |
-| Precision | Measures how many flagged cases are actually referable according to the reference labels. |
-| F1-score | Balances precision and recall. |
-| ROC-AUC | Measures ranking performance across classification thresholds. |
-| Confusion matrix | Helps inspect false positives and false negatives. |
-
-Particular attention will be paid to false negatives, since missed referable cases are an important screening concern.
-
-We will also investigate:
-- Performance across datasets and image-quality groups.
-- The impact of classification thresholds.
-- Generalization to data not used during training.
-- Potential patient or image overlap between training and evaluation datasets.
+1. **Splits:** train, val and test come from the manifest. Val drives early stopping and the threshold. Test is used once, at the end.
+2. **Early stopping:** the best checkpoint by validation AUROC is saved. Training stops after 5 epochs with no improvement. A high epoch cap is only a safety limit, not the stopping rule.
+3. **Threshold:** score all validation images and scan cutoffs from 0.000 to 1.000 in steps of 0.001. Take the highest cutoff whose validation sensitivity is at least 0.90, and freeze it in a JSON file.
+4. **Test, run once:** apply the frozen threshold. Report sensitivity, specificity, precision, F1, AUROC, PR-AUC and the confusion matrix.
+5. **Confidence intervals:** 1,000 bootstrap resamples that resample whole patient groups, with 95% percentile intervals.
+6. **Breakdowns:** by source (EyePACS vs APTOS) and sensitivity by severity grade.
+7. **Graphs:** training curves, validation and test ROC, precision-recall, confusion matrix, performance by source and grade, confidence intervals, and a false-negative gallery.
+8. **Settings:** images resized to a fixed size and normalized with ImageNet mean and std, no augmentation by default, seed 42.
 
 ## 🗺️ Roadmap
 
