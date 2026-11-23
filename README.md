@@ -98,6 +98,23 @@ Fine-tuning recipe, copied from the RETFound recipe so the models are comparable
 - **Epoch 2 onward:** all layers train, with layer-wise learning rates. The top group uses 6e-4 and each group closer to the input uses 0.65 times the rate of the one above it. For ResNet-18 the six groups are `conv1 + bn1`, `layer1`, `layer2`, `layer3`, `layer4` and `fc`.
 - AdamW with weight decay 0.05, cosine schedule, no augmentation, batch size 32, early stopping on validation AUROC with patience 5 and a 30 epoch cap.
 
+## 📈 Results So Far
+
+Balanced dataset, plain BCE, test set, threshold set for 90% validation sensitivity. Rows marked pending have not been filled in yet.
+
+| Model | Preprocessing | Test AUROC | Sensitivity | Specificity @ 90% sens | Val AUROC | PR-AUC | Precision | F1 | Best epoch |
+|---|---|---|---|---|---|---|---|---|---|
+| Baseline CNN | Ben Graham | 0.879 | 0.881 | 0.605 | | 0.803 | 0.419 | 0.568 | 27 |
+| Baseline CNN | Normalized | 0.809 | 0.887 | 0.425 | 0.838 | 0.680 | 0.332 | 0.484 | 37 |
+| ResNet-18 (224 px) | Normalized | 0.833 | 0.881 | 0.487 | 0.855 | 0.732 | 0.357 | 0.508 | 4 |
+| ResNet-18 | Ben Graham | pending | | | | | | | |
+| ResNet-50 | Ben Graham | pending | | | | | | | |
+| ResNet-50 | Normalized | pending | | | | | | | |
+| RETFound | Ben Graham | pending | | | | | | | |
+| RETFound | Normalized | pending | | | | | | | |
+
+On normalized images, ResNet-18 beats the baseline CNN (test AUROC 0.833 vs 0.809) and reaches its best validation AUROC at epoch 4, but it overfits quickly after that. Sensitivity lands slightly below 0.90 on test because the threshold is fixed on validation and does not transfer perfectly.
+
 ## 🗺️ Roadmap
 
 - [ ] **Phase 1:** Inspect datasets and finalize initial dataset roles.
